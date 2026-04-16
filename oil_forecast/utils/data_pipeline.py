@@ -8,7 +8,7 @@ PRICE_COLUMN = "Oil price - Crude prices since 1861 (current US$)"
 
 def load_oil_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path)
-    missing = {YEAR_COLUMN, PRICE_COLUMN} - set(df.columns)
+    missing = {YEAR_COLUMN, PRICE_COLUMN}.difference(df.columns)
     if missing:
         raise ValueError(f"Missing required columns: {sorted(missing)}")
 

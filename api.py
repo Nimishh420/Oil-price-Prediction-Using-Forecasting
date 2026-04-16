@@ -18,7 +18,7 @@ def create_app() -> Flask:
     def predict() -> tuple[dict, int]:
         settings = Settings()
         steps = request.args.get("steps", default=settings.forecast_steps, type=int)
-        if not steps or steps <= 0:
+        if steps <= 0:
             return {"error": "steps must be a positive integer"}, 400
 
         history = load_oil_data(settings.data_path)
